@@ -1,0 +1,75 @@
+/* الخط الأساسي */
+body {
+  font-family: 'Cairo', sans-serif;
+  background-color: #f0f4f8;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  direction: rtl;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  padding: 20px 0;
+  color: white;
+}
+
+.logo {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+nav ul.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+nav ul.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+nav ul.nav-links li a:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.main-content {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.welcome-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #4b2b7f;
+}
+
+.welcome-section p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 10px auto;
+  line-height: 1.6;
+}
+
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 15px 0;
+  text-align: center;
+  font-size: 0.9rem;
+}

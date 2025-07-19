@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>المستشارون - فضفضة</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .counselor-list {
+      max-width: 900px;
+      margin: 40px auto;
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    .counselor-card {
+      background: white;
+      padding: 20px;
+      border-radius: 14px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .counselor-card h3 {
+      margin: 10px 0 5px;
+      color: #4b2b7f;
+    }
+    .counselor-card p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">فضفضة - المستشارون</h1>
+    </div>
+  </header>
+
+  <main class="counselor-list">
+    <div class="counselor-card">
+      <h3>د. سامي الحداد</h3>
+      <p>خبير في العلاج السلوكي المعرفي، خبرة 10 سنوات. مختص بالتعامل مع القلق والاكتئاب وتقدير الذات.</p>
+    </div>
+    <div class="counselor-card">
+      <h3>د. أمل اليافعي</h3>
+      <p>أخصائية علاقات أسرية وزوجية. تقدم جلسات استشارية لفهم الذات وتحسين التواصل العاطفي.</p>
+    </div>
+    <div class="counselor-card">
+      <h3>أ. خالد الخطيب</h3>
+      <p>مرشد نفسي للشباب والمراهقين. يعالج مشكلات الهوية، الضغوط الدراسية، وصدمات الطفولة.</p>
+    </div>
+    <div class="counselor-card">
+      <h3>د. ريم السالمي</h3>
+      <p>متخصصة في دعم ضحايا العنف النفسي واللفظي، وتقدم جلسات فردية داعمة بكل خصوصية.</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 فضفضة - جميع الحقوق محفوظة</p>
+  </footer>
+</body>
+</html>

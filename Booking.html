@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>حجز جلسة - فضفضة</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .booking-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin: 15px 0 6px 0;
+      font-weight: 600;
+    }
+    input[type="text"], select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    .radio-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 8px;
+    }
+    .radio-group input[type="radio"] {
+      margin-left: 5px;
+    }
+    table.price-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-weight: 600;
+    }
+    table.price-table th, table.price-table td {
+      border: 1px solid #ddd;
+      padding: 8px 12px;
+      text-align: center;
+    }
+    table.price-table thead {
+      background-color: #764ba2;
+      color: white;
+    }
+    button.btn-primary {
+      margin-top: 25px;
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border: none;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button.btn-primary:hover {
+      background: linear-gradient(135deg, #5a6edd, #643a9c);
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">فضفضة - حجز جلسة</h1>
+    </div>
+  </header>
+
+  <main class="booking-container">
+    <form id="bookingForm">
+      <label for="username">اسمك أو اسم وهمي:</label>
+      <input type="text" id="username" name="username" required placeholder="اكتب اسمك" />
+
+      <label>كيف تفضل أسلوب النقاش؟</label>
+      <div class="radio-group">
+        <input type="radio" id="text" name="sessionType" value="text" required />
+        <label for="text">نصي</label>
+
+        <input type="radio" id="audio" name="sessionType" value="audio" />
+        <label for="audio">صوتي</label>
+
+        <input type="radio" id="video" name="sessionType" value="video" />
+        <label for="video">فيديو</label>
+      </div>
+
+      <label>الجنس:</label>
+      <div class="radio-group">
+        <input type="radio" id="male" name="gender" value="male" required />
+        <label for="male">ذكر</label>
+
+        <input type="radio" id="female" name="gender" value="female" />
+        <label for="female">أنثى</label>
+      </div>
+
+      <label>هل ترغب في حفظ جلساتك؟</label>
+      <div class="radio-group">
+        <input type="radio" id="saveYes" name="saveSession" value="yes" required />
+        <label for="saveYes">نعم</label>
+
+        <input type="radio" id="saveNo" name="saveSession" value="no" />
+        <label for="saveNo">لا</label>
+      </div>
+
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>نوع الجلسة</th>
+            <th>نصف ساعة</th>
+            <th>ساعة</th>
+            <th>ساعتين</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>دردشة نصية</td>
+            <td>15$</td>
+            <td>30$</td>
+            <td>50$</td>
+          </tr>
+          <tr>
+            <td>دردشة صوتية</td>
+            <td>30$</td>
+            <td>55$</td>
+            <td>100$</td>
+          </tr>
+          <tr>
+            <td>دردشة فيديو</td>
+            <td>50$</td>
+            <td>100$</td>
+            <td>190$</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <label for="duration">مدة الجلسة:</label>
+      <select id="duration" name="duration" required>
+        <option value="">اختر المدة</option>
+        <option value="0.5">نصف ساعة</option>
+        <option value="1">ساعة</option>
+        <option value="2">ساعتين</option>
+      </select>
+
+      <p style="margin-top: 15px; font-weight: 700;">السعر: <span id="priceDisplay">0$</span></p>
+
+      <button type="submit" class="btn-primary">الانتقال إلى الدفع</button>
+    </form>
+  </main>
+
+  <script>
+    const sessionTypePrices = {
+      text: { "0.5": 15, "1": 30, "2": 50 },
+      audio: { "0.5": 30, "1": 55, "2": 100 },
+      video: { "0.5": 50, "1": 100, "2": 190 },
+    };
+
+    const priceDisplay = document.getElementById('priceDisplay');
+    const durationSelect = document.getElementById('duration');
+    let selectedSessionType = null;
+
+    function updatePrice() {
+      const duration = durationSelect.value;
+      if (!selectedSessionType || !duration) {
+        priceDisplay.textContent = '0$';
+        return;
+      }
+      const price = sessionTypePrices[selectedSessionType][duration];
+      priceDisplay.textContent = price + '$';
+    }
+
+    document.querySelectorAll('input[name="sessionType"]').forEach(radio => {
+      radio.addEventListener('change', e => {
+        selectedSessionType = e.target.value;
+        updatePrice();
+      });
+    });
+
+    durationSelect.addEventListener('change', updatePrice);
+
+    document.getElementById('bookingForm').addEventListener('submit', e => {
+      e.preventDefault();
+
+      const form = e.target;
+      const username = form.username.value.trim();
+      const sessionType = form.sessionType.value;
+      const gender = form.gender.value;
+      const saveSession = form.saveSession.value;
+      const duration = form.duration.value;
+
+      if (!username || !sessionType || !gender || !saveSession || !duration) {
+        alert('يرجى تعبئة جميع الحقول.');
+        return;
+      }
+
+      const price = sessionTypePrices[sessionType][duration];
+
+      const bookingData = {
+        username,
+        sessionType,
+        gender,
+        saveSession,
+        duration,
+        price
+      };
+
+      localStorage.setItem('bookingData', JSON.stringify(bookingData));
+
+      window.location.href = 'payment.html';
+    });
+  </script>
+</body>
+</html>
